@@ -16,7 +16,7 @@ import { fakeBackendProvider } from './core/helpers/fake-backend-provider';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
 ],
 declarations: [
     AppComponent
