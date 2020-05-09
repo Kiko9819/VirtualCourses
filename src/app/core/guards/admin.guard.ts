@@ -7,15 +7,15 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class AdminGuard implements CanLoad {
-    constructor(private router: Router, 
-        private accountService: AccountService){}
+    constructor(private router: Router, private accountService: AccountService){}
 
     canLoad(route: Route, segments: UrlSegment[]): boolean {
         return this.check();
     }
 
     private check(): boolean {
-        if(true || !this.accountService.userValue.roles.includes('admin')) {
+      // TODO: fix once you have the current user
+        if (true || !this.accountService.userValue.roles.includes('admin')) {
             this.router.navigate(['/home']);
 
             return false;

@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     NgbModule,
-    NgbRatingModule,
     MainRoutingModule
   ],
   declarations: [

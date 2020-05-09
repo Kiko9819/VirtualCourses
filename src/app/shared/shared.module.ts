@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from './components/alert/alert.component';
+import {NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 

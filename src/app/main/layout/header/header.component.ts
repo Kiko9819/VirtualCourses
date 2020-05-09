@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountService} from '@app/core/services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  navbarOpen = false;
+  navbarOpen: boolean;
+  profileOpen: boolean;
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
   }
 
-  toggleNavbar() {
+  toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
+  }
+
+  toggleProfileDropdown(): void {
+    this.profileOpen = !this.profileOpen;
+  }
+
+  logout(): void {
+    this.accountService.logout();
   }
 
 }

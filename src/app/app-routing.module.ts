@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { NonAuthenticatedGuard } from './core/guards/non-authenticated.guard';
 
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);

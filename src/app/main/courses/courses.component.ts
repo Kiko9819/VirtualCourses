@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-
+  currentRate = 6;
   constructor() { }
 
   ngOnInit(): void {
