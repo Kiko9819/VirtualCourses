@@ -46,12 +46,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!user) {
               return error('Email or password is incorrect');
             }
+
+            if (user.isBlocked) {
+              return error('This user account has been blocked');
+            }
+
             return ok({
                 id: user.id,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 token: 'fake-jwt-token',
+                isBlocked: user.isBlocked,
                 roles: [...user.roles]
             });
         }
