@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { HomeComponent } from './home/home.component';
 import { AdminGuard } from '@app/core/guards/admin.guard';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 
 const adminModule = () => import('./admin/admin.module').then(m => m.AdminModule);
 const coursesModule = () => import('./courses/courses.module').then(m => m.CoursesModule);
@@ -25,12 +27,25 @@ const routes: Routes = [
       {
         path: 'courses',
         loadChildren: coursesModule,
-        // canLoad: [AdminGuard]
+        data: {
+          manageCourses: false
+        }
       },
       {
         path: 'admin',
         loadChildren: adminModule,
-        // canLoad: [AdminGuard]
+        data: {
+          listSelected: false
+        },
+        canLoad: [AdminGuard]
+      },
+      {
+        path: 'my-profile',
+        component: MyProfileComponent
+      },
+      {
+        path: 'my-favorites',
+        component: MyFavoritesComponent
       }
     ]
   }
