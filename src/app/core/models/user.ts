@@ -5,5 +5,6 @@
     firstName: string;
     lastName: string;
     token: string;
+    isBlocked: boolean;
     roles: string[];
 }
