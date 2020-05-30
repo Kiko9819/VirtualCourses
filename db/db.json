@@ -38,13 +38,13 @@
     },
     {
       "ivan@gmail.com": {
-        "id": 0,
-        "title": "Angular 9 Full Course",
-        "description": "Beginner friendly course on the angular framework",
+        "id": 1,
+        "title": "C# Full Course",
+        "description": "Beginner friendly course on the .NET framework",
         "publishData": "19-12-2020",
-        "rating": 4
+        "rating": 5
       },
-      "id": 6
+      "id": 7
     }
   ]
 }
