@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { CoursesService } from './services/courses.service';
 import { take } from 'rxjs/operators';
 import { Course } from './models/course.interface';
+import {AccountService} from '@app/core/services/account.service';
+import {Favorite} from '@app/core/models/favorite';
 
 @Component({
   selector: 'app-courses',
@@ -12,24 +14,31 @@ import { Course } from './models/course.interface';
 export class CoursesComponent implements OnInit {
 
   courses: Course[];
+  favorites: Favorite[];
   manageCourses: boolean;
   // TODO Remove, once rating is implemented
-  currentRate = 6;
 
-  constructor(private route: ActivatedRoute, private coursesService: CoursesService) {
+
+  constructor(private route: ActivatedRoute,
+              private coursesService: CoursesService,
+              private accountService: AccountService) {
     this.manageCourses = this.route.snapshot.data['manageCourses'];
   }
 
   ngOnInit(): void {
+    this.fetchCourses();
+    this.fetchFavorites();
+  }
+
+  private fetchCourses(): void {
     this.coursesService.getAll().pipe(
       take(1)
     ).subscribe(courses => this.courses = courses);
   }
 
-  addToFav(course: Course): void {
-    this.coursesService.addToFavorites(course).pipe(
+  private fetchFavorites(): void {
+    this.coursesService.getFavorites(this.accountService.userEmail).pipe(
       take(1)
-    ).subscribe(data => console.log(data));
+    ).subscribe(data => this.favorites = data);
   }
-
 }

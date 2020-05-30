@@ -1,27 +1,12 @@
 <div *ngIf="!manageCourses; else manageCoursesList">
-  <div class="card" *ngFor="let course of courses">
-    <div class="card-body">
-      <h4 class="card-title">{{course.title}}</h4>
-      <h6 class="card-subtitle mb-2 text-muted">published at: {{course.publishData}}</h6>
-      <p class="card-text">{{course.description}}</p>
-      <button class="btn btn-link" (click)="addToFav(course)"><i class="fas fa-crown"></i> Add to Favorites</button>
-
-    </div>
-    <div class="card-footer">
-      <span>Rating</span>
-      <ngb-rating class="mx-2" [(rate)]="currentRate"></ngb-rating>
-      <span>{{ currentRate }}</span>
-    </div>
+  <div *ngFor="let course of courses">
+    <app-course *ngIf="favorites" [course]="course"
+                [favorites]="favorites"></app-course>
   </div>
 </div>
 
 <ng-template #manageCoursesList>
-  <div class="card" *ngFor="let course of courses">
-    <div class="card-body">
-      <h4 class="card-title">{{course.title}}</h4>
-      <h6 class="card-subtitle mb-2 text-muted">published at: {{course.publishData}}</h6>
-      <a class="card-link">Edit</a>
-      <a class="card-link">Delete</a>
-    </div>
+  <div *ngFor="let course of courses">
+    <app-course-manage [course]="course"></app-course-manage>
   </div>
 </ng-template>
