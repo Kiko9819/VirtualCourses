@@ -35,16 +35,6 @@
         "rating": 5
       },
       "id": 5
-    },
-    {
-      "ivan@gmail.com": {
-        "id": 1,
-        "title": "C# Full Course",
-        "description": "Beginner friendly course on the .NET framework",
-        "publishData": "19-12-2020",
-        "rating": 5
-      },
-      "id": 7
     }
   ]
 }

@@ -9,7 +9,6 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
-import { AlertComponent } from '@app/shared/components/alert/alert.component';
 
 
 

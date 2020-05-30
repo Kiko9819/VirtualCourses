@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '@app/core/services/account.service';
 import { AlertService } from '@app/core/services/alert.service';
 import { User } from '@app/core/models/user';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-profile',
@@ -17,24 +18,14 @@ export class MyProfileComponent implements OnInit {
   submitted = false;
   user: User;
 
-  constructor(private fb: FormBuilder, 
-    private accountService: AccountService, 
-    private alertService: AlertService) { 
+  constructor(private fb: FormBuilder,
+              private accountService: AccountService,
+              private alertService: AlertService) {
       this.user = this.accountService.userValue;
     }
 
   ngOnInit(): void {
     this.buildForm();
-    this.accountService.user.subscribe(
-      () => {
-        this.loading = false;
-        this.alertService.success('Successfuly updated your profile!');
-      },
-      () => {
-        this.loading = false;
-        this.alertService.success('Oops... som');
-      }
-    )
   }
 
    // convenience getter for easy access to form fields
@@ -52,7 +43,14 @@ export class MyProfileComponent implements OnInit {
        }
 
        this.loading = true;
-       this.accountService.update(this.user.id, this.formGroup.value).subscribe();
+       this.accountService.update(this.user.id, this.formGroup.value).pipe(
+         take(1)
+       ).subscribe(() => {
+         this.loading = false;
+         this.alertService.success('Successfully updated your profile!');
+       }, () => {
+         this.alertService.error('Oops... something went wrong');
+       });
    }
 
   private buildForm(): void {
