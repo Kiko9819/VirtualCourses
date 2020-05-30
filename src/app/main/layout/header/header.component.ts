@@ -16,6 +16,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  hasAdminRights(): boolean {
+    return this.accountService.userValue && this.accountService.isAdmin();
+  }
+
   toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
