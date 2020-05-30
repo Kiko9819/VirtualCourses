@@ -17,6 +17,9 @@ export class CoursesService {
 
   constructor(private httpClient: HttpClient, private accountsService: AccountService) { }
 
+  removeFromFavorites(favoriteId: number): Observable<any> {
+    return this.httpClient.delete(`${this.CORE_URL}/favorites/${favoriteId}`);
+  }
 
   getFavorites(email: string): Observable<any> {
     return this.httpClient.get(`${this.CORE_URL}/favorites`).pipe(

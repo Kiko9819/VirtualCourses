@@ -17,36 +17,6 @@
   ],
   "favorites": [
     {
-      "ivan@gmail.com": {
-        "id": 1,
-        "title": "C# Full Course",
-        "description": "Beginner friendly course on the .NET framework",
-        "publishData": "19-12-2020",
-        "rating": 5
-      },
-      "id": 1
-    },
-    {
-      "ivan@gmail.com": {
-        "id": 1,
-        "title": "C# Full Course",
-        "description": "Beginner friendly course on the .NET framework",
-        "publishData": "19-12-2020",
-        "rating": 5
-      },
-      "id": 2
-    },
-    {
-      "ivan@gmail.com": {
-        "id": 0,
-        "title": "Angular 9 Full Course",
-        "description": "Beginner friendly course on the angular framework",
-        "publishData": "19-12-2020",
-        "rating": 4
-      },
-      "id": 3
-    },
-    {
       "maria@gmail.com": {
         "id": 0,
         "title": "Angular 9 Full Course",
@@ -65,6 +35,16 @@
         "rating": 5
       },
       "id": 5
+    },
+    {
+      "ivan@gmail.com": {
+        "id": 0,
+        "title": "Angular 9 Full Course",
+        "description": "Beginner friendly course on the angular framework",
+        "publishData": "19-12-2020",
+        "rating": 4
+      },
+      "id": 6
     }
   ]
 }
