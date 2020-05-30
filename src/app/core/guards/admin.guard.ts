@@ -14,8 +14,7 @@ export class AdminGuard implements CanLoad {
     }
 
     private check(): boolean {
-      // TODO: fix once you have the current user
-        if (true || !this.accountService.userValue.roles.includes('admin')) {
+        if (!this.accountService.userValue.roles.includes('admin')) {
             this.router.navigate(['/home']);
 
             return false;
