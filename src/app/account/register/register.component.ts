@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
+        this.form.value.isBlocked = false;
         this.accountService.register(this.form.value)
             .pipe(first())
             .subscribe(
