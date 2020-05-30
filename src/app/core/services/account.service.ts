@@ -20,8 +20,16 @@ export class AccountService {
         this.user = this.userSubject.asObservable();
     }
 
+    public get userEmail(): string {
+        return this.userValue.email;
+    }
+
     public get userValue(): User {
         return this.userSubject.value;
+    }
+
+    public isAdmin(): boolean {
+        return this.userValue.roles.includes('admin');
     }
 
     login(email, password) {
