@@ -1,3 +1,6 @@
+<h1 class="d-flex justify-content-between">All Courses
+  <button *ngIf="isAdmin" type="button" class="btn btn-primary">Create</button>
+</h1>
 <div *ngIf="!manageCourses; else manageCoursesList">
   <div *ngFor="let course of courses">
     <app-course *ngIf="favorites" [course]="course"

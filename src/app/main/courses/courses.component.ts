@@ -25,6 +25,13 @@ export class CoursesComponent implements OnInit {
     this.manageCourses = this.route.snapshot.data['manageCourses'];
   }
 
+  get isAdmin(): boolean {
+    if (this.accountService.userValue) {
+      return this.accountService.isAdmin();
+    }
+    return false;
+  }
+
   ngOnInit(): void {
     this.fetchCourses();
     this.fetchFavorites();

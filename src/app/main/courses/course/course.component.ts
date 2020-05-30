@@ -57,6 +57,10 @@ export class CourseComponent implements OnInit {
     });
   }
 
+  updateRating(courseId: number): void {
+    console.log(courseId);
+  }
+
   private setInFavoritesInitial() {
     this.favorites.forEach((favorite: Favorite) => {
       const favoriteData = favorite[this.accountService.userEmail] as any;
