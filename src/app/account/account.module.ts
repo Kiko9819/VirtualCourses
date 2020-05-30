@@ -16,7 +16,7 @@ import { SharedModule } from '@app/shared/shared.module';
   ],
   declarations: [
     AccountComponent,
-    LoginComponent, 
+    LoginComponent,
     RegisterComponent
   ]
 })
