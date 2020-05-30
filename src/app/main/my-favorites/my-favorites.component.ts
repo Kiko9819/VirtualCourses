@@ -24,6 +24,10 @@ export class MyFavoritesComponent implements OnInit {
   }
 
   get email(): string {
-    return this.accountService.userEmail;
+    if (this.accountService.userValue) {
+      return this.accountService.userEmail;
+    }
+
+    return '';
   }
 }
