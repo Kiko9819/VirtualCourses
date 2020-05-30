@@ -2,7 +2,9 @@
   <div class="jumbotron bg-primary col-lg-5 text-white">
     <h1 class="display-3">Users</h1>
     <p class="lead">
-      <a class="btn btn-primary bg-transparent border-0 btn-lg text-decoration-underlined cursor-pointer" role="button">
+      <a class="btn btn-primary bg-transparent border-0 btn-lg text-decoration-underlined cursor-pointer"
+         role="button"
+         [routerLink]="['/','admin','courses']" (click)="listSelected = true">
         <u>
           Manage
         </u>
@@ -12,7 +14,9 @@
   <div class="jumbotron bg-info col-lg-5 text-white">
     <h1 class="display-3">Courses</h1>
     <p class="lead">
-      <a class="btn btn-primary bg-transparent border-0 btn-lg cursor-pointer" role="button">
+      <a class="btn btn-primary bg-transparent border-0 btn-lg cursor-pointer"
+         role="button"
+         [routerLink]="['/','admin','courses']" (click)="listSelected = true">
         <u>
           Manage
         </u>
@@ -20,3 +24,5 @@
     </p>
   </div>
 </div>
+
+<router-outlet></router-outlet>
