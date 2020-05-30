@@ -5,9 +5,9 @@ import { Alert } from '@app/core/models/alert';
 import { AlertService } from '@app/core/services/alert.service';
 import { AlertType } from '@app/core/enums/alert-type.enum';
 
-@Component({ 
-  selector: 'alert', 
-  templateUrl: 'alert.component.html', 
+@Component({
+  selector: 'alert',
+  templateUrl: 'alert.component.html',
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit, OnDestroy {
@@ -79,7 +79,7 @@ export class AlertComponent implements OnInit, OnDestroy {
         if (!alert) return;
 
         const classes = ['alert', 'alert-dismissable', 'mt-4', 'container'];
-                
+
         const alertTypeClass = {
             [AlertType.Success]: 'alert alert-success',
             [AlertType.Error]: 'alert alert-danger',
