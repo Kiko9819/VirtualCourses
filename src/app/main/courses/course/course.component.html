@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{course.title}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">published at: {{course.publishData}}</h6>
+    <p class="card-text">{{course.description}}</p>
+    <button *ngIf="!inFavorites" class="btn btn-link" (click)="addToFav(course)"><i class="fas fa-crown"></i> Add to Favorites</button>
+    <button *ngIf="inFavorites" class="btn btn-link" (click)="removeFromFav(course)"><i class="fas fa-crown"></i> Remove from Favorites</button>
+
+  </div>
+  <div class="card-footer">
+    <span>Rating</span>
+    <ngb-rating class="mx-2" [(rate)]="currentRate"></ngb-rating>
+    <span>{{ currentRate }}</span>
+  </div>
+</div>
