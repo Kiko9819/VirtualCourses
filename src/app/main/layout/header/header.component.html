@@ -25,7 +25,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                   (click)="toggleProfileDropdown()">
-            Username
+            {{loggedInUserName}}
           </button>
           <div class="dropdown-menu" [ngClass]="{'show': profileOpen}">
             <!-- link to my profile -->

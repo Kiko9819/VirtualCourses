@@ -13,6 +13,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
 
+  get loggedInUserName(): string {
+    if (this.accountService.userValue) {
+      return this.accountService.userValue.firstName;
+    }
+  }
+
   ngOnInit(): void {
   }
 
