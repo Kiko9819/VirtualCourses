@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <a class="navbar-brand" routerLink="/">Navbar</a>
+    <a class="navbar-brand" routerLink="/">VirtualCourses</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/courses']" routerLinkActive="active">Courses</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="hasAdminRights()">
                 <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="active">Admin</a>
             </li>
         </ul>
@@ -29,8 +29,8 @@
           </button>
           <div class="dropdown-menu" [ngClass]="{'show': profileOpen}">
             <!-- link to my profile -->
-            <a class="dropdown-item cursor-pointer" [routerLink]="['/courses']">My Profile</a>
-            <a class="dropdown-item cursor-pointer" [routerLink]="['/courses']">Favorite Courses</a>
+            <a class="dropdown-item cursor-pointer" [routerLink]="['/my-profile']">My Profile</a>
+            <a class="dropdown-item cursor-pointer" [routerLink]="['/my-favorites']">Favorite Courses</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item cursor-pointer" (click)="logout()">Logout</a>
           </div>
