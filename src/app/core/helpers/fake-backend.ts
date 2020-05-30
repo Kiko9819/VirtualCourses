@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
@@ -35,7 +35,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions
@@ -43,24 +43,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { email, password } = body;
             const user = users.find(x => x.email === email && x.password === password);
-            if (!user) return error('Email or password is incorrect');
+            if (!user) {
+              return error('Email or password is incorrect');
+            }
             return ok({
                 id: user.id,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: 'fake-jwt-token'
-            })
+                token: 'fake-jwt-token',
+                roles: [...user.roles]
+            });
         }
 
         function register() {
-            const user = body
+            const user = body;
 
             if (users.find(x => x.email === user.email)) {
-                return error('Email "' + user.email + '" is already taken')
+                return error('Email "' + user.email + '" is already taken');
             }
 
-            if(user.email.toLowerCase() === 'admin@admin.com') {
+            if (user.email.toLowerCase() === 'admin@admin.com') {
                 user.roles = ['admin'];
             } else {
                 user.roles = ['user'];
@@ -73,22 +76,28 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+              return unauthorized();
+            }
             return ok(users);
         }
 
         function getUserById() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+              return unauthorized();
+            }
 
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
         }
 
         function updateUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+              return unauthorized();
+            }
 
-            let params = body;
-            let user = users.find(x => x.id === idFromUrl());
+            const params = body;
+            const user = users.find(x => x.id === idFromUrl());
 
             // only update password if entered
             if (!params.password) {
@@ -103,7 +112,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+              return unauthorized();
+            }
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -130,6 +141,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function idFromUrl() {
             const urlParts = url.split('/');
+          // tslint:disable-next-line:radix
             return parseInt(urlParts[urlParts.length - 1]);
         }
     }
