@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users" [class.table-warning]="user.isBlocked">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <span *ngFor="let role of user.roles">{{ role }}</span>
+      </td>
+      <td>
+        <button *ngIf="!user.isBlocked" type="button" class="btn btn-warning" (click)="blockUser(+user.id)">Block</button>
+        <button *ngIf="user.isBlocked" type="button" class="btn btn-success" (click)="unblockUser(+user.id)">Unblock</button>
+        <button type="button" class="btn btn-danger" (click)="deleteUser(+user.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
