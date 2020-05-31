@@ -1,4 +1,6 @@
 export interface Rating {
   id: number;
-  [key: string]: number;
+  courseId: number;
+  email: string;
+  ratingValue: number;
 }
