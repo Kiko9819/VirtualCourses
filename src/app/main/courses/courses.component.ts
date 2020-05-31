@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from './services/courses.service';
 import {take} from 'rxjs/operators';
 import {Course} from './models/course.interface';
 import {AccountService} from '@app/core/services/account.service';
 import {Favorite} from '@app/core/models/favorite';
+import {Rating} from '@app/core/models/rating';
 
 @Component({
   selector: 'app-courses',
@@ -15,10 +16,8 @@ export class CoursesComponent implements OnInit {
 
   courses: Course[];
   favorites: Favorite[];
+  ratings: Rating[];
   manageCourses: boolean;
-
-  // TODO Remove, once rating is implemented
-
 
   constructor(private route: ActivatedRoute,
               private coursesService: CoursesService,
@@ -36,6 +35,12 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCourses();
     this.fetchFavorites();
+    this.fetchRatings();
+  }
+
+  reload(): void {
+    this.fetchCourses();
+    this.fetchRatings();
   }
 
   deleteCourse(courseId: number): void {
@@ -45,7 +50,6 @@ export class CoursesComponent implements OnInit {
       () => {
         this.filterCourses(courseId);
         this.findAndDeleteFavorite(courseId);
-        console.log(this.favorites);
       },
       () => console.log('failed to delete')
     );
@@ -84,6 +88,13 @@ export class CoursesComponent implements OnInit {
   private fetchFavorites(): void {
     this.coursesService.getFavorites(this.accountService.userEmail).pipe(
       take(1)
-    ).subscribe(data => this.favorites = data);
+    ).subscribe(favorites => this.favorites = favorites);
   }
+
+  private fetchRatings(): void {
+    this.coursesService.getRatings().pipe(
+      take(1)
+    ).subscribe(ratings => this.ratings = ratings);
+  }
+
 }

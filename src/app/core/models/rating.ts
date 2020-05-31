@@ -1,5 +1,5 @@
 export interface Rating {
-  id: number;
+  id?: number;
   courseId: number;
   email: string;
   ratingValue: number;
