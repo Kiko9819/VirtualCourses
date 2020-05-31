@@ -41,11 +41,11 @@ export class CoursesService {
   }
 
   create(course: Course): Observable<any> {
-    return this.httpClient.post(this.COURSES_URL, {course});
+    return this.httpClient.post(this.COURSES_URL, course);
   }
 
   update(course: Course): Observable<any> {
-    return this.httpClient.patch(this.COURSES_URL, {course});
+    return this.httpClient.put(`${this.COURSES_URL}/${course.id}`, course);
   }
 
   delete(courseId: string | number): Observable<any> {
@@ -53,7 +53,7 @@ export class CoursesService {
   }
 
   save(course: Course): any {
-    if (course.id) {
+    if (course.id || course.id === 0) {
       return this.update(course);
     } else {
       return this.create(course);
