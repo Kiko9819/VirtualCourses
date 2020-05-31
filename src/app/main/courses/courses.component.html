@@ -3,12 +3,16 @@
 </h1>
 <div *ngIf="!manageCourses; else manageCoursesList">
   <div *ngFor="let course of courses">
-    <app-course *ngIf="favorites" [course]="course"
+    <app-course *ngIf="favorites"
+                (reload)="reload()"
+                [course]="course"
+                [ratings]="ratings"
                 [favorites]="favorites"></app-course>
   </div>
 </div>
 <ng-template #manageCoursesList>
   <div *ngFor="let course of courses">
-    <app-course-manage [course]="course" (delete)="deleteCourse($event)"></app-course-manage>
+    <app-course-manage [course]="course"
+                       (delete)="deleteCourse($event)"></app-course-manage>
   </div>
 </ng-template>
