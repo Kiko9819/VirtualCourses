@@ -17,7 +17,9 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.getAll().pipe(
       take(1)
-    ).subscribe(users => this.users = users);
+    ).subscribe(users => {
+      this.users = users.filter(user => user.id !== this.accountService.userValue.id);
+    });
   }
 
   deleteUser(id: number): void {
