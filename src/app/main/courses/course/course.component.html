@@ -6,23 +6,25 @@
     <button *ngIf="!inFavorites"
             class="btn btn-link"
             (click)="addToFav(course)"
-            [disabled]="loading">
+            [disabled]="favoriteIsChanging">
       <i class="fas fa-crown"></i>
       Add to Favorites
     </button>
     <button *ngIf="inFavorites"
             class="btn btn-link"
             (click)="removeFromFav(course)"
-            [disabled]="loading">
+            [disabled]="favoriteIsChanging">
       <i class="fas fa-crown"></i>
       Remove from Favorites
     </button>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" [class.text-black-50]="rateIsChanging">
     <span>Rating</span>
     <ngb-rating class="mx-2"
-                [rate]="currentRate"
-                (click)="updateRating(course.id)"></ngb-rating>
-    <span>{{ currentRate }}</span>
+                *ngIf="rating"
+                [readonly]="rateIsChanging"
+                [(rate)]="rating.ratingValue"
+                (rateChange)="updateRating($event)"></ngb-rating>
+    <span>{{ rating ? rating.ratingValue : 0 }}</span>
   </div>
 </div>
