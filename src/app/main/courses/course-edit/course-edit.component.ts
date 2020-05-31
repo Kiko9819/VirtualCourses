@@ -61,7 +61,7 @@ export class CourseEditComponent implements OnInit {
       rating: this.course.rating
     };
 
-    this.coursesService.save(requestObject).pipe(
+    this.coursesService.saveCourse(requestObject).pipe(
       take(1)
     ).subscribe(() => {
       this.loading = false;

@@ -52,7 +52,7 @@ export class CoursesService {
     return this.httpClient.delete(`${this.COURSES_URL}/${courseId}`);
   }
 
-  save(course: Course): any {
+  saveCourse(course: Course): any {
     if (course.id || course.id === 0) {
       return this.update(course);
     } else {
