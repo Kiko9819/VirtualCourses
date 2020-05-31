@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '@app/main/courses/models/course.interface';
 import {Favorite} from '@app/core/models/favorite';
+import {CoursesService} from "@app/main/courses/services/courses.service";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-course-manage',
@@ -10,10 +12,22 @@ import {Favorite} from '@app/core/models/favorite';
 export class CourseManageComponent implements OnInit {
 
   @Input() course: Course;
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  editCourse(courseId: number): void {
+    console.log(courseId);
+    // navigate and pass in id
+    // the edit/create component will load the course by id
+  }
+
+  deleteCourse(courseId: number): void {
+    this.delete.emit(courseId);
   }
 
 }

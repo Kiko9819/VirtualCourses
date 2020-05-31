@@ -6,13 +6,6 @@
       "description": "Beginner friendly course on the angular framework",
       "publishData": "19-12-2020",
       "rating": 4
-    },
-    {
-      "id": 1,
-      "title": "C# Full Course",
-      "description": "Beginner friendly course on the .NET framework",
-      "publishData": "19-12-2020",
-      "rating": 5
     }
   ],
   "favorites": [
@@ -35,6 +28,16 @@
         "rating": 5
       },
       "id": 5
+    },
+    {
+      "admin@admin.com": {
+        "id": 0,
+        "title": "Angular 9 Full Course",
+        "description": "Beginner friendly course on the angular framework",
+        "publishData": "19-12-2020",
+        "rating": 4
+      },
+      "id": 6
     }
   ]
 }
